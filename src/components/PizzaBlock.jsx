@@ -3,8 +3,6 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { Button } from './Button';
 
-console.log(PropTypes);
-
 export const PizzaBlock = ({ obj }) => {
   const [activeType, setActiveType] = useState(obj.types[0]);
   const [sizes, setSizes] = useState(obj.sizes[0]);

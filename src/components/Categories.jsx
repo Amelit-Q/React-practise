@@ -4,6 +4,7 @@ export const Categories = ({ items, onClick }) => {
   const [activeItem, setActiveItem] = useState(null);
   const onSelectItem = (id) => {
     setActiveItem(id);
+    onClick(id);
   };
   return (
     <div className="categories">
@@ -24,33 +25,3 @@ export const Categories = ({ items, onClick }) => {
     </div>
   );
 };
-
-/* export class Categories extends React.Component {
-  state = {
-    activeItem: null,
-  };
-
-  onSelectItem = (id) => {
-    return this.setState({
-      activeItem: id,
-    });
-  };
-  render() {
-    const { onClick } = this.props;
-    return (
-      <div className="categories">
-        <ul>
-          <li className="active">Все</li>
-          {this.props.items.map((t, id) => (
-            <li
-              className={this.state.activeItem === id ? 'active' : ''} //строка указывает на: если t(в методе map) активен, то применяется css стиль active
-              key={id}
-              onClick={() => this.onSelectItem(id)}>
-              {t}
-            </li>
-          ))}
-        </ul>
-      </div>
-    );
-  }
-} */
