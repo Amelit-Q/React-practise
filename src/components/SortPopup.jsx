@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
-export const SortPopup = ({ items }) => {
-  const [visiblePopup, setVisiblePopup] = useState(false);
-  const [activeItem, setActiveItem] = useState(0);
-  const sortReference = useRef();
+export const SortPopup = React.memo(({ items }) => {
+  const [visiblePopup, setVisiblePopup] = React.useState(false);
+  const [activeItem, setActiveItem] = React.useState(0);
+  const sortReference = React.useRef();
   const activeLabel = items[activeItem].name;
 
   const onSelectItem = (id) => {
@@ -15,7 +15,7 @@ export const SortPopup = ({ items }) => {
     return setVisiblePopup(!visiblePopup);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     document.body.addEventListener('click', handleOutsideClick); //если произошёл первый рендер, то вешаем обработчик 'clicl', на body и добавляем функцию handleOutsideClick, она будет обращаться к outsideclick функции, при каждом клике на body и выполнять её соответственно
     console.log(sortReference.current);
   }, []);
@@ -63,4 +63,4 @@ export const SortPopup = ({ items }) => {
       )}
     </div>
   );
-};
+});

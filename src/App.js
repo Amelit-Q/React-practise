@@ -11,8 +11,8 @@ function App() {
   const dispatch = useDispatch();
 
   React.useEffect(() => {
-    axios.get('http://localhost:3000/db.json').then(({ data }) => {
-      dispatch(setPizzas(data.pizzas)); //dispatch выполняется после get запроса (промис), когда произойдёт первый рендер, отправь на сервак запрос по указанной ссылке
+    axios.get('http://localhost:3001/pizzas').then(({ data }) => {
+      dispatch(setPizzas(data)); //dispatch выполняется после get запроса (промис), когда произойдёт первый рендер, отправь на сервак запрос по указанной ссылке
     }); //после ответа от сервера (данные, выполни функцию dispatch), функция получает все пиццы, создаёт объект, и этот объект передаёт в dispatch
   }, []); // после dispatch уже передаёт это всё внутрь redux
   return (
