@@ -1,13 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-export const SortPopup = React.memo(({ items }) => {
+export const SortPopup = React.memo(({ items, onClickSortType, activeSortType }) => {
   const [visiblePopup, setVisiblePopup] = React.useState(false);
-  const [activeItem, setActiveItem] = React.useState(0);
   const sortReference = React.useRef();
-  const activeLabel = items[activeItem].name;
+  const activeLabel = items.find((obj) => obj.type === activeSortType).name; //берём какой-то объект и вытаскиваем свойство name (объект берётся из массива благодапя методу find)
 
   const onSelectItem = (id) => {
-    setActiveItem(id);
+    onClickSortType(id);
     setVisiblePopup(false);
   };
 
@@ -52,8 +52,8 @@ export const SortPopup = React.memo(({ items }) => {
             {items && //проверка на null !
               items.map((obj, id) => (
                 <li
-                  className={activeItem === id ? 'active' : ''}
-                  onClick={() => onSelectItem(id)}
+                  onClick={() => onSelectItem(obj)}
+                  className={activeSortType === id ? 'active' : ''}
                   key={id}>
                   {obj.name}
                 </li>
@@ -64,3 +64,13 @@ export const SortPopup = React.memo(({ items }) => {
     </div>
   );
 });
+
+SortPopup.propTypes = {
+  activeSortType: PropTypes.string.isRequired,
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,
+  onClickSortType: PropTypes.func.isRequired,
+};
+
+SortPopup.defaultProps = {
+  items: [],
+};

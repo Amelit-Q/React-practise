@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { Button } from './Button';
+import { Button } from '../Button';
 
 export const PizzaBlock = ({ obj }) => {
   const [activeType, setActiveType] = useState(obj.types[0]);

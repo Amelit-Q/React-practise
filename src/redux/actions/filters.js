@@ -1,7 +1,7 @@
 // Action Creator - функция создающая action, тоесть принимает динамические данные и прокидывает их уже в сам action
-export const setSortBy = (name) => ({
+export const setSortBy = ({ type, order }) => ({
   type: 'SET_SORT_BY',
-  payload: name,
+  payload: { type, order },
 });
 
 //Action
