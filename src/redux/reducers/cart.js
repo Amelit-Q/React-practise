@@ -1,16 +1,16 @@
 const initialState = {
-  category: 0,
-  sortBy: 'popular',
+  items: {},
+  totalPrice: 0,
+  itemsCount: 0,
 };
 
-const filters = (state = initialState, action) => {
-  if (action.type === 'SET_SORT_BY') {
+const cart = (state = initialState, action) => {
+  if (action.type === 'ADD_PIZZA_CART')
     return {
       ...state,
-      sortBy: action.payload,
+      totalPrice: action.payload, //возьми весь initialState и замени в totalPrice значение на то, что придёт в action.payload
     };
-  }
   return state;
 };
 
-export default filters;
+export default cart;

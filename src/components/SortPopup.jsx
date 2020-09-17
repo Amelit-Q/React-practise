@@ -22,7 +22,8 @@ export const SortPopup = React.memo(({ items, onClickSortType, activeSortType })
 
   const handleOutsideClick = (e) => {
     //функция указывает на то, что когда вне области visiblePopup был произведн клик, включается setVisiblePopup, равный false, тоесть popup закрывается
-    if (!e.path.includes(sortReference.current)) {
+    const path = e.path || (e.composedPath && e.composedPath());
+    if (!path.includes(sortReference.current)) {
       setVisiblePopup(false);
     }
     //вёрстка popup хранится ниже, в return, вся эта область считается visiblePopup

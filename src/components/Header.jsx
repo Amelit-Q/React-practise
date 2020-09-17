@@ -2,8 +2,17 @@ import React from 'react';
 import logo from './../assets/img/pizza-logo.svg';
 import { Button } from './Button';
 import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 export const Header = () => {
+  const { totalPrice, totalCount } = useSelector(({ cart }) => ({
+    //обращаемся к useSelector, которого просим, чтобы он дал два значения из redux, reducer cart
+    totalPrice: cart.totalPrice, //далее вытащи из него 2 свойства
+    totalCount: cart.totalCount, //totalPrice и totalCount, но при возврате результата, верни его в качестве объекта
+  }));
+
+  //так-же можно написать таким образом const { totalPrice, totalCount } = useSelector(({ cart }) => cart);
+  //обусловленно это тем, что как только в принципе изменится reducer корзины (cart), придётся производить rerender
   return (
     <div className="header">
       <div className="container">
@@ -20,7 +29,7 @@ export const Header = () => {
         <div className="header__cart">
           <Link to="/cart">
             <Button className="button-cart">
-              <span>512 ₽</span>
+              <span>{totalPrice} ₽</span>
               <div className="button__delimiter"></div>
               <svg
                 width="18"
@@ -50,7 +59,7 @@ export const Header = () => {
                   strokeLinejoin="round"
                 />
               </svg>
-              <span>3</span>
+              <span>{totalCount}</span>
             </Button>
           </Link>
         </div>

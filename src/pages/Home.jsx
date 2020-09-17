@@ -32,9 +32,6 @@ export const Home = () => {
     dispatch(setSortBy(name));
   }, []);
 
-  console.log(category);
-  console.log(categoryNames);
-
   return (
     <div className="container">
       <div className="content__top">
